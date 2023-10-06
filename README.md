@@ -8,7 +8,8 @@ A plugin for Tailwind CSS that provides elastic and bounce transition timing fun
 >
 > **Compatibility**
 >
-> Timing functions of this plugin currently don't work on Safari and Mobile, see [#Compatibility](#Compatibility)
+> Transition timing functions provided by this plugin currently don't work on Safari and Mobile.
+> See [#Compatibility](#Compatibility) for more details and fallback behavior/options.
 
 ## Installation
 
