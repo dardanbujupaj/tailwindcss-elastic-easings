@@ -2,7 +2,10 @@
 
 A plugin for Tailwind CSS that provides elastic and bounce transition timing functions.
 
+![Elastic horizontal translate](./translate-elastic-out.gif)
+
 > [!NOTE]
+>
 > **Compatibility**
 >
 > Timing functions of this plugin currently don't work on Safari and Mobile, see [#Compatibility](#Compatibility)
@@ -81,3 +84,7 @@ This plugin can be configured by passing a configuration object to it.
 
 Currently the only configurable function is the `resolution` (default value `30`) of the timing functions.
 The higher the value the smoother the velocity changes, the lower the value the smaller your CSS-bundle.
+
+## Acknowledgments
+
+- easing functions by https://easings.net
