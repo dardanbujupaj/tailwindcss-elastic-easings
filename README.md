@@ -90,10 +90,22 @@ This plugin can be configured by passing a configuration object to it.
 
 ### Configuration options
 
-| Option        | Type                                | Description                                                | Default |
-| ------------- | ----------------------------------- | ---------------------------------------------------------- | ------- |
-| resolution    | `number`                            | Number of points that are calculated for the easing curves | 30      |
-| customEasings | `Record<string, EasingFunction>`^\* | Object to add or overwrite easing functions                | {}      |
+| Option        | Type                             | Description                                                                         | Default |
+| ------------- | -------------------------------- | ----------------------------------------------------------------------------------- | ------- |
+| resolution    | `number`                         | Number of points that are calculated for the easing curves                          | 30      |
+| customEasings | `Record<string, EasingFunction>` | Object to add or overwrite easing functions (see [Custom easings](#custom-easings)) | {}      |
+
+### Custom easings
+
+Custom easings can be used to implement all sorts of easing curves.
+The `customEasings` options takes an object where the keys are the names of the functions and the values a function with the signature `(value: number) => number`.
+
+The name will transformed from camelCase to kebab-case and prepended with `ease-` to creat the tailwind utility class name.
+E.g. `fancyCurve` becomes `ease-fancy-curve`.
+
+The function value can be any function that takes a number and returns a number.
+The easiest example would be `(value: number) => value`, which creates a linear easing function.
+The function will be called with values from `0` to `1` with steps of `1 / resolution` to create the easing curve.
 
 ## Acknowledgments
 
