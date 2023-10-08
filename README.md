@@ -77,14 +77,23 @@ This plugin can be configured by passing a configuration object to it.
 ```js
   // ...
   plugins: [
-    require("tailwindcss-elastic-easings")({ resolution: 30 }),
+    require("tailwindcss-elastic-easings")({
+      resolution: 45,
+      customEasings: {
+        'rand': (x: number) => x + (Math.random() - 0.5) * (0.5 - Math.abs(x - 0.5)),
+      }
+    }),
     // ...
   ],
   // ...
 ```
 
-Currently the only configurable function is the `resolution` (default value `30`) of the timing functions.
-The higher the value the smoother the velocity changes, the lower the value the smaller your CSS-bundle.
+### Configuration options
+
+| Option        | Type                                | Description                                                | Default |
+| ------------- | ----------------------------------- | ---------------------------------------------------------- | ------- |
+| resolution    | `number`                            | Number of points that are calculated for the easing curves | 30      |
+| customEasings | `Record<string, EasingFunction>`^\* | Object to add or overwrite easing functions                | {}      |
 
 ## Acknowledgments
 
