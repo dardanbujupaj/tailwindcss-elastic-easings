@@ -1,8 +1,9 @@
 import plugin from "tailwindcss/plugin";
-import * as easings from "./easings";
+import * as defaultEasings from "./easings";
 
 type Options = {
-  resolution: number;
+  resolution?: number;
+  customEasings?: Record<string, (value: number) => number>;
 };
 
 export = plugin.withOptions<Options>(
@@ -14,18 +15,29 @@ export = plugin.withOptions<Options>(
       );
     };
   },
-  function ({ resolution }: { resolution: number } = { resolution: 30 }) {
+  function ({ resolution, customEasings } = {}) {
     return {
       theme: {
         extend: {
-          transitionTimingFunction: generateTimingFunctions(resolution),
+          transitionTimingFunction: generateTimingFunctions(
+            resolution,
+            customEasings,
+          ),
         },
       },
     };
   },
 );
 
-function generateTimingFunctions(resolution: number = 30) {
+function generateTimingFunctions(
+  resolution: number = 30,
+  customEasings: Record<string, (value: number) => number> = {},
+) {
+  const easings = {
+    ...defaultEasings,
+    ...customEasings,
+  };
+
   return Object.fromEntries(
     Object.entries(easings).map(([name, easingFunction]) => {
       const tailwindName = name.replace(
